@@ -4418,6 +4418,7 @@ class Server(RemoteStatusMixin):
                     # Try to copy from the Primary node the backup using
                     # the copy controller.
                     copy_controller = RsyncCopyController(
+                        rsync_options=self.config.rsync_always_add_arguments,
                         ssh_command=self.config.primary_ssh_command,
                         network_compression=self.config.network_compression,
                         path=self.path,
@@ -4628,14 +4629,19 @@ class Server(RemoteStatusMixin):
                     #   rsync command arguments and filename.
                     # inplace: for inplace file substitution
                     #   and update of files
+                    args=[
+                        "--recursive",
+                        "--perms",
+                        "--times",
+                        "--protect-args",
+                        "--inplace",
+                    ]
+
+                    if self.config.rsync_always_add_arguments:
+                        args += self.config.rsync_always_add_arguments
+
                     rsync = Rsync(
-                        args=[
-                            "--recursive",
-                            "--perms",
-                            "--times",
-                            "--protect-args",
-                            "--inplace",
-                        ],
+                        args=args,
                         ssh=self.config.primary_ssh_command,
                         bwlimit=self.config.bandwidth_limit,
                         allowed_retval=(0,),

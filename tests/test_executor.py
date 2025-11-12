@@ -334,6 +334,7 @@ class TestRsyncBackupExecutor(object):
                 workers=1,
                 workers_start_batch_period=1,
                 workers_start_batch_size=10,
+                rsync_options=None,
             ),
             mock.call().add_directory(
                 label="tbs1",
@@ -439,6 +440,7 @@ class TestRsyncBackupExecutor(object):
                 workers=1,
                 workers_start_batch_period=1,
                 workers_start_batch_size=10,
+                rsync_options=None,
             ),
             mock.call().add_directory(
                 label="tbs1",

@@ -351,6 +351,7 @@ def build_config_dictionary(config_keys=None):
         "retention_policy": None,
         "retention_policy_mode": "auto",
         "reuse_backup": None,
+        "rsync_always_add_arguments": None,
         "ssh_command": 'ssh -c "arcfour" -p 22 postgres@pg01.nowhere',
         "primary_ssh_command": None,
         "tablespace_bandwidth_limit": None,

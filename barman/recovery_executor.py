@@ -711,6 +711,7 @@ class RecoveryExecutor(object):
         # copied are added before executing the copy() method
         controller = RsyncCopyController(
             path=self.server.path,
+            rsync_options=self.config.rsync_always_add_arguments,
             ssh_command=remote_command,
             network_compression=self.config.network_compression,
             safe_horizon=safe_horizon,

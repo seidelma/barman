@@ -286,6 +286,7 @@ class RsyncCopyController(object):
     def __init__(
         self,
         path=None,
+        rsync_options=None,
         ssh_command=None,
         ssh_options=None,
         network_compression=False,
@@ -300,6 +301,8 @@ class RsyncCopyController(object):
     ):
         """
         :param str|None path: the PATH where rsync executable will be searched
+        :param list[str]|None rsync_options: list of rsync options that will
+            be appended to the call
         :param str|None ssh_command: the ssh executable to be used
             to access remote paths
         :param list[str]|None ssh_options: list of ssh options to be used
@@ -323,6 +326,7 @@ class RsyncCopyController(object):
 
         super(RsyncCopyController, self).__init__()
         self.path = path
+        self.rsync_options = rsync_options
         self.ssh_command = ssh_command
         self.ssh_options = ssh_options
         self.network_compression = network_compression
@@ -474,6 +478,9 @@ class RsyncCopyController(object):
         # and retry after flushing the rsync cache.
         if self.rsync_has_ignore_missing_args:
             args.append("--ignore-missing-args")
+
+        if self.rsync_options:
+            args += self.rsync_options
 
         # TODO: remove debug output or use it to progress tracking
         # By adding a double '--itemize-changes' option, the rsync

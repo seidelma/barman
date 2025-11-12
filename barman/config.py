@@ -700,6 +700,7 @@ class ServerConfig(BaseConfig):
         "retention_policy",
         "retention_policy_mode",
         "reuse_backup",
+        "rsync_always_add_arguments",
         "slot_name",
         "snapshot_disks",
         "snapshot_gcp_project",  # Deprecated, replaced by gcp_project
@@ -801,6 +802,7 @@ class ServerConfig(BaseConfig):
         "retention_policy",
         "retention_policy_mode",
         "reuse_backup",
+        "rsync_always_add_arguments",
         "slot_name",
         "snapshot_gcp_project",  # Deprecated, replaced by gcp_project
         "snapshot_provider",
@@ -911,6 +913,7 @@ class ServerConfig(BaseConfig):
         "recovery_staging_path": parse_staging_path,
         "create_slot": parse_create_slot,
         "reuse_backup": parse_reuse_backup,
+        "rsync_always_add_arguments": str.split,
         "snapshot_disks": parse_snapshot_disks,
         "staging_path": parse_staging_path,
         "staging_location": parse_staging_location,

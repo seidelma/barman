@@ -1280,6 +1280,7 @@ class RsyncBackupExecutor(ExternalBackupExecutor):
             workers=self.config.parallel_jobs,
             workers_start_batch_period=self.config.parallel_jobs_start_batch_period,
             workers_start_batch_size=self.config.parallel_jobs_start_batch_size,
+            rsync_options=self.config.rsync_always_add_arguments,
         )
 
         # List of paths to be excluded by the PGDATA copy
